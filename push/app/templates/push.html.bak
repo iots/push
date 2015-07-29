@@ -1,0 +1,19 @@
+<!DOCTYPE>
+<title>消息推送界面</title>
+
+<form action="" method="POST">
+  {% csrf_token %}
+  <p>编辑消息(*)</p>
+  <p><textarea style="height:100px;width:300px;" name="push_message"></textarea></p>
+  <p>{{field.errors}}</p>
+  <p>编辑URL(*)</p>
+  <p><textarea style="height:20px;width:300px;" name="push_url"></textarea></p>
+  <p>{{field.errors}}</p>
+  <p><input type="submit" value="提交推送"/></p>
+  <!--p>错误提示:</p-->
+  {{form.as_table}} 
+  {% for field in form %}
+    <!--p>{{field.label_tag}}{{field.errors}}</p-->
+    <p>{{field.errors}}</p>
+  {% endfor %}
+</form>

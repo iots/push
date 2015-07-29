@@ -1,0 +1,13 @@
+<form action="/push/" method="POST">
+    {% csrf_token %}
+    <!--p>错误提示:{{ret}}</p-->
+    {% for field in form %}
+    <div class="fieldWrapper">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.errors }}
+    </div>
+    {% endfor %}
+    <div class="fieldWrapper"><p><input type="submit" value="提交推送" /></p></div>
+    <!--p><b>Note:</b>{{ret}}</p-->
+</form> 
