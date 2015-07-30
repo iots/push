@@ -1,13 +1,31 @@
-<form action="/push/" method="POST">
-    {% csrf_token %}
-    <!--p>错误提示:{{ret}}</p-->
-    {% for field in form %}
-    <div class="fieldWrapper">
-        {{ field.label_tag }}
-        {{ field }}
-        {{ field.errors }}
-    </div>
-    {% endfor %}
-    <div class="fieldWrapper"><p><input type="submit" value="提交推送" /></p></div>
-    <!--p><b>Note:</b>{{ret}}</p-->
-</form> 
+<html>
+<head>
+    <title>消息推送子界面</title>
+</head>
+
+<body>
+    {% if form.errors %}
+        </br>
+        <p style="color: red;">
+            {#pulralize 是filter，用来判断是否为添加's'来表示单词的复数形式#}
+            <b>Please correct the error{{ form.errors|pluralize }} below.</b>
+        </p>
+    {% endif %}
+
+    <form action="/push/" method="POST">
+        </br>
+        {% csrf_token %}
+        <div class="field">
+            <label for="push_message">编辑消息:</label>
+            {{ form.push_message }}
+            {{ form.push_message.errors }}
+        </div>
+        <div class="field">
+            <label for="push_url">编辑URL:</label>
+            {{ form.push_url }}
+            {{ form.push_url.errors }}
+        </div>
+        <input type="submit" value="提交推送">
+    </form> 
+</body>
+</html>
